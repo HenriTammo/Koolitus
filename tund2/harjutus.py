@@ -8,4 +8,4 @@ vastused.append(tehe)
 vastused.append(tehe1)
 vastused.append(tehe2)
 
-print ("vastused:", vastused, "\n"*3, "kontroll:", kontroll)
+print ("vastused:", vastused, "\n", "kontroll:", kontroll)

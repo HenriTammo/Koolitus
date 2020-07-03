@@ -7,3 +7,4 @@ if len(nimekiri) > 0:
         print ("arvasid ära")
     else:
         print("ei arvanud ära")
+        
