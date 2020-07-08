@@ -3,7 +3,16 @@ import random
 avamine = open("näide.txt", "w")
 
 for x in range(10):
-    avamine.write(str(random.randint(0, 10)) + "\n")
+    arv = random.randint(0, 10)
+    kontroll = True
+    while kontroll == True:
+        try:
+            avamine.write(arv + "\n")
+            kontroll = False
+        except TypeError:
+            arv = str(arv)
+        finally:
+            continue
 
 avamine.close()
 
