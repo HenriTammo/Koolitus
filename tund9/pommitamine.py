@@ -66,9 +66,10 @@ def printVäljak(väljakKogu):
 def laevadePaigutamine(väljakKogu):
     printVäljak(väljakKogu)
     outerloop = True
-    counter = 1
+    counter = 2
+    suurus = 1
     while outerloop == True:
-        for x in range(counter):
+        while counter > 0:
             print ("Paiguta ühene laev mängija")
             rida = input("Vali rida")
             asukoht = input("Vali asukoht")
@@ -81,10 +82,17 @@ def laevadePaigutamine(väljakKogu):
                 if x == asukoht:
                     while True:
                         if horisontaal[x] == " ":
-                            horisontaal[x] = 0
-                            outerloop = False
-                            printVäljak(väljakKogu)
-                            break
+                            posKontroll = laevaPosKontroll(suurus, rida, asukoht, väljakKogu)
+                            if posKontroll == True:
+                                horisontaal[x] = 0
+                                outerloop = False
+                                printVäljak(väljakKogu)
+                                counter = counter - 1
+                                break
+                            else:
+                                break
+                        else:
+                            print("siin juba on laev")
     return counter
                         
 def rünnak(omaVäljak, vastaseVäljak, elud):
@@ -125,6 +133,24 @@ def rünnak(omaVäljak, vastaseVäljak, elud):
             outerloop = False
     return elud                       
 
+def laevaPosKontroll(suurus, rida, asukoht, väljakKogu):
+    kontroll = True
+    rida = int(rida)
+    asukoht = int(asukoht)
+    for x in väljakKogu:
+        counter = 1
+        if rida-suurus <= int(x) <= rida+suurus:
+            x = väljakKogu[x]
+            for y in x:
+                if asukoht-suurus <= int(y) <= asukoht+suurus:
+                    if x[str(counter)] == 0:
+                        print("siin kandis ei ole piisavalt ruumi(1 ruut igas suunas)")
+                        kontroll = False
+                counter = counter + 1
+    if kontroll == True:
+        return True
+    else:
+        return False
 
 print ("Tere tulemast laevadepommitamise mängu.")
 print ("Igal mängijal on kokku kümme laeva.")
