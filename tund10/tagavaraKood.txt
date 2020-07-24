@@ -1,0 +1,37 @@
+def laevaPosKontroll(suurus, rida, asukoht, väljakKogu, n):
+    kontroll = True
+    rida = int(rida)
+    asukoht = int(asukoht)
+    miinimumRida = rida-suurus
+    maksimumRida = rida+suurus
+    miinimumVertikaal = asukoht-suurus
+    maksimumVertikaal = asukoht+suurus
+    for x in väljakKogu:
+        counter = 1
+        if rida-suurus <= int(x) <= rida+suurus:
+            ruudustik = väljakKogu[x]
+            for y in ruudustik:
+                if asukoht-suurus <= int(y) <= asukoht+suurus:
+                    if suurus >= 2:
+                        if (miinimumRida + n <= int(x) or maksimumRida - n >= int(x)) and (miinimumVertikaal + n <= int(y) or maksimumVertikaal - n >= int(y)):
+                            continue
+                        elif ruudustik[str(counter)] == 0:
+                            print("siin kandis ei ole piisavalt ruumi(1 ruut igas suunas)")
+                            kontroll = False
+                    else:
+                        if ruudustik[str(counter)] == 0:
+                            print("siin kandis ei ole piisavalt ruumi(1 ruut igas suunas)")
+                            kontroll = False
+                counter = counter + 1
+    if kontroll == True:
+        return True
+    else:
+        return False
+
+
+            if suurus == 4:
+                n = 2
+            elif suurus == 3:
+                n = 1
+            else:
+                n = 0
